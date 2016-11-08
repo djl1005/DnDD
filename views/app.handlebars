@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>D&DD</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="shortcut icon" href="/assets/img/Logo.jpg"/>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+</head>
+<body>
+  <nav><a href="/login"><img id="logo" src="/assets/img/Logo.jpg" alt="logo"/></a>
+    <div class="navlink"><a href="/logout">Log out</a></div>
+  </nav>
+  <section id="makeMonster">
+  <form id="monsterForm" name="monsterForm" action="/maker" method="POST" class="monsterForm">
+    <label for="name">Name:</label>
+    <input id="name" type="text" name="name" value="Name">
+    
+    <label for="envorment">Envorments: </label>
+    <input  id="envorment" type="text" name="envorment" value="Exsample1,Exsample2">
+      
+    <label for="dc">DC: </label>
+    <input id="dc" type="number" name="dc" value="0">
+      
+      <label for="numDie">Roll: </label>
+    <input id="numDie" type="number" name="numDie" value="1">
+    
+      <label for="die">d: </label>
+    <input id="die" type="number" name="die" value="1">
+    
+      <label for="plus">+: </label>
+    <input id="plus" type="number" name="plus" value="0">
+    
+      <label for="str">str: </label>
+    <input id="str" type="number" name="str" value="1">
+    
+      <label for="int">int: </label>
+    <input id="int" type="number" name="int" value="1">
+    
+      <label for="wis">wis: </label>
+    <input id="wis" type="number" name="wis" value="1">
+    
+      <label for="dex">dex: </label>
+    <input id="dex" type="number" name="dex" value="1">
+    
+      <label for="con">con: </label>
+    <input id="con" type="number" name="con" value="1">
+    
+      <label for="cha">cha: </label>
+    <input id="cha" type="number" name="cha" value="1">
+      
+    <label for="skills">Skills:</label>
+    <input type="text" name="skills" value="">
+    
+      <label for="notes">Notes: </label>
+    <input type="text" name="notes" value="">
+      
+    <input type = "hidden" name = "_csrf" value = {{csrfToken}} />
+    
+    <a id="makeMonsterSubmit" href="#" class="makeMonsterSubmit">Make Monster</a>
+    </form>
+      
+      
+  </section>
+  <section id="monsters">
+    <div class="monster">
+        {{#if monsters}}
+            {{#each monsters}}
+                <div class="monster">
+                    <h3 class="monsterName">Name: {{this.name}}</h3>
+                    <h3 class="monsterHealth">Total HP: {{calcHP this.numDie this.die this.plus}}</h3>
+                  
+                  <div class= "stats">
+                    <div class="str">
+                      <h4 class="strValue">STR: {{this.str}}</h4>
+                      <h4 class="strMod">MOD: {{calcMod this.str}}</h4>
+                    </div>
+                    
+                    <div class="int">
+                      <h4 class="intValue">INT: {{this.int}}</h4>
+                      <h4 class="intMod">MOD: {{calcMod this.int}}</h4>
+                    </div>
+                    
+                    <div class="wis">
+                      <h4 class="wisValue">WIS: {{this.wis}}</h4>
+                      <h4 class="wisMod">MOD: {{calcMod this.wis}}</h4>
+                    </div>
+                    
+                    <div class="dex">
+                      <h4 class="dexValue">DEX: {{this.dex}}</h4>
+                      <h4 class="dexMod">MOD: {{calcMod this.dex}}</h4>
+                    </div>
+                    
+                    <div class="con">
+                      <h4 class="conValue">CON: {{this.con}}</h4>
+                      <h4 class="conMod">MOD: {{calcMod this.con}}</h4>
+                    </div>
+                    
+                    <div class="cha">
+                      <h4 class="chaValue">CHA: {{this.cha}}</h4>
+                      <h4 class="chaMod">MOD: {{calcMod this.cha}}</h4>
+                    </div>
+                    
+                    <p class="skills">Skills: {{this.skills}}</p>
+                    
+                    <p class="notes">Notes: {{this.notes}}</p>
+                    
+                  </div>
+                </div>
+        {{/each}}
+        {{/if}}
+
+    </div>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <script src="/assets/maker.js" type="text/babel"></script>
+</body>
+</html>
