@@ -36,10 +36,6 @@ $(document).ready(function() {
             return false;
         }
       
-        console.log($("#monsterForm").serialize());
-      
-        return false;
-      
         sendAjax($("#monsterForm").attr("action"), $("#monsterForm").serialize());
         
         return false;
