@@ -20,69 +20,69 @@ const MonsterSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
-  
+
   dc: {
     type: Number,
     min: 0.1,
     required: true,
   },
-  
+
   numDie: {
     type: Number,
     min: 0,
     required: true,
   },
-  
+
   die: {
     type: Number,
     min: 0,
     required: true,
   },
-  
+
   plus: {
     type: Number,
     min: 0,
     required: true,
   },
-    
-    str: {
+
+  str: {
     type: Number,
     min: 1,
     required: true,
   },
-    
-    int: {
+
+  int: {
     type: Number,
     min: 1,
     required: true,
   },
-    wis: {
+  wis: {
     type: Number,
     min: 1,
     required: true,
   },
-  
+
   dex: {
     type: Number,
     min: 1,
     required: true,
   },
-    con: {
+  con: {
     type: Number,
     min: 1,
     required: true,
   },
-    cha: {
+  cha: {
     type: Number,
     min: 1,
     required: true,
   },
-    
+
   skills: {
     type: String,
     trim: true,
   },
-    
+
   notes: {
     type: String,
     trim: true,
@@ -118,6 +118,15 @@ MonsterSchema.statics.findByOwner = (ownerId, callback) => {
   };
 
   return MonsterModel.find(search).select().exec(callback);
+};
+
+MonsterSchema.statics.remove = (ownerId, name, callback) => {
+  const search = {
+    owner: convertId(ownerId),
+    name: name,
+  };
+
+  return MonsterModel.find(search).remove().exec(callback);
 };
 
 MonsterModel = mongoose.model('Monster', MonsterSchema);

@@ -9,7 +9,7 @@ const expressHandlebars = require('express-handlebars');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const url = require('url');
-const csrf =require('csurf');
+const csrf = require('csurf');
 const dndMath = require('./dndMath.js');
 
 const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DnDD';
@@ -22,15 +22,15 @@ mongoose.connect(dbURL, (err) => {
 });
 
 let redisURL = {
-    hostname: 'localhost',
-    port: 6379,
+  hostname: 'localhost',
+  port: 6379,
 };
 
 let redisPASS;
 
-if(process.env.REDISCLOUD_URL) {
-    redisURL = url.parse(process.env.REDISCLOUD_URL);
-    redisPASS = redisURL.auth.split(':')[1];
+if (process.env.REDISCLOUD_URL) {
+  redisURL = url.parse(process.env.REDISCLOUD_URL);
+  redisPASS = redisURL.auth.split(':')[1];
 }
 
 const router = require('./router.js');
@@ -47,44 +47,44 @@ app.use(bodyParser.urlencoded({
 app.use(session({
   key: 'sessionid',
   store: new RedisStore({
-      host: redisURL.hostname,
-      port: redisURL.port,
-      pass: redisPASS,
+    host: redisURL.hostname,
+    port: redisURL.port,
+    pass: redisPASS,
   }),
   secret: 'Dragons and dragons',
   resave: true,
   saveUninitialized: true,
-  cookie:{
-      httpOnly: true,
+  cookie: {
+    httpOnly: true,
   },
 }));
 
-var hbs = expressHandlebars.create({
+const hbs = expressHandlebars.create({
   defaultLayout: 'main',
-  
+
   helpers: {
     calcHP: dndMath.calcHP,
     calcMod: dndMath.calcMod,
   },
-  
+
 });
 
 app.engine('handlebars', hbs.engine);
 
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/../views/`);
-app.use(favicon(`${__dirname}/../client/img/favicon.png`));
+app.use(favicon(`${__dirname}/../client/img/Logo.jpg`));
 app.disable('x-powered-by');
 app.use(cookieParser());
 
 app.use(csrf());
 app.use((err, req, res, next) => {
-    console.log(`error`);
-    if(err.code !== 'BADCSRFTOKEN'){
-        return next(err);
-    }
-    
-    return false;
+  console.log('error');
+  if (err.code !== 'BADCSRFTOKEN') {
+    return next(err);
+  }
+
+  return false;
 });
 
 router(app);
