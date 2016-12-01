@@ -41,7 +41,7 @@ const makeMonster = (req, res) => {
   const monsterData = {
     name: req.body.name,
     envorment: req.body.envorment,
-    dc: req.body.cr,
+    cr: req.body.cr,
     numDie: req.body.numDie,
     die: req.body.die,
     plus: req.body.plus,

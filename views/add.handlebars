@@ -24,6 +24,7 @@
     <label for="cr">Cr: </label>
     <input id="cr" type="number" name="cr" value="0">
       
+    <div class ="health">
       <label for="numDie">Roll: </label>
     <input id="numDie" type="number" name="numDie" value="1">
     
@@ -33,6 +34,9 @@
       <label for="plus">+: </label>
     <input id="plus" type="number" name="plus" value="0">
     
+    </div>
+    
+    <div class ="atr">
       <label for="str">str: </label>
     <input id="str" type="number" name="str" value="1">
     
@@ -51,12 +55,15 @@
       <label for="cha">cha: </label>
     <input id="cha" type="number" name="cha" value="1">
       
-    <label for="skills">Skills:</label>
-    <input type="text" name="skills" value="">
-    
+    </div>
+    <div class ="skillnotes">
+      <label for="skills">Skills:</label>
+      <textarea  name="skills" value=""></textarea>
+    </div> 
+    <div>
       <label for="notes">Notes: </label>
-    <input type="text" name="notes" value="">
-      
+      <textarea type="text" name="notes" value=""></textarea>
+    </div>  
     <input type = "hidden" name = "_csrf" value = {{csrfToken}} />
     
     <a id="makeMonsterSubmit" href="#" class="makeMonsterSubmit">Make Monster</a>

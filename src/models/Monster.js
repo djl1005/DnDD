@@ -21,7 +21,7 @@ const MonsterSchema = new mongoose.Schema({
     required: true,
   },
 
-  dc: {
+  cr: {
     type: Number,
     min: 0.1,
     required: true,

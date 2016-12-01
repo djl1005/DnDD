@@ -14,7 +14,6 @@
     <div class="navlink"><a href="/credits">credits</a></div>
   </nav>
   <section id="monsters">
-    <div class="monster">
         {{#if monsters}}
             {{#each monsters}}
                 <div class="monster">
@@ -54,13 +53,15 @@
                       <h4 class="chaMod">MOD: {{calcMod this.cha}}</h4>
                     </div>
                     
+                  </div>
+                  
                     <p class="skills">Skills: {{this.skills}}</p>
                     
                     <p class="notes">Notes: {{this.notes}}</p>
                     
                    
                     
-                  </div>
+                  
                   <input type="button" class ="delete" name="delete" value="Delete">
                 </div>
         {{/each}}
@@ -68,7 +69,6 @@
         <input id= "csrf" type = "hidden" name = "_csrf" value = {{csrfToken}} />
         {{/if}}
 
-    </div>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script src="/assets/maker.js" type="text/babel"></script>
