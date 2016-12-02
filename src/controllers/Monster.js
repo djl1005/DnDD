@@ -7,13 +7,25 @@ const makerPage = (req, res) => {
 };
 
 const listPage = (req, res) => {
+
   Monster.MonsterModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
     }
 
-    return res.render('list', { csrfToken: req.csrfToken(), monsters: docs });
+    return res.render('list', { csrfToken: req.csrfToken(), canDelete: 1, monsters: docs });
+  });
+};
+
+const publicListPage = (req, res) => {
+  Monster.MonsterModel.findByOwner("583fcd16b5ab8816e826d8d0", (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occured' });
+    }
+
+    return res.render('list', { csrfToken: req.csrfToken(), canDelete: 0, monsters: docs });
   });
 };
 
@@ -74,4 +86,5 @@ const makeMonster = (req, res) => {
 module.exports.deleteMonster = deleteMonster;
 module.exports.makerPage = makerPage;
 module.exports.listPage = listPage;
+module.exports.publicListPage = publicListPage;
 module.exports.make = makeMonster;

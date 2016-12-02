@@ -130,9 +130,13 @@ textarea {
   width: 5%;
 }
 
+.monster{
+  margin-left: 1%;
+}
+
 .stats {
   display: flex;
-  margin-left: 1%;
+  
 }
 
 .stats div {

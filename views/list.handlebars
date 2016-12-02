@@ -8,7 +8,8 @@
 </head>
 <body>
   <nav><a href="/login"><img id="logo" src="/assets/img/Logo.jpg" alt="logo"/></a>
-    <div class="navlink"><a href="/list">List</a></div>
+    <div class="navlink"><a href="/plist">Public List</a></div>
+    <div class="navlink"><a href="/list">Custom List</a></div>
     <div class="navlink"><a href="/add">Add</a></div>
     <div class="navlink"><a href="/logout">Log out</a></div>
     <div class="navlink"><a href="/credits">credits</a></div>
@@ -61,8 +62,9 @@
                     
                    
                     
-                  
-                  <input type="button" class ="delete" name="delete" value="Delete">
+                  {{#if ../canDelete}}
+                    <input type="button" class ="delete" name="delete" value="Delete">
+                  {{/if}}
                 </div>
         {{/each}}
       

@@ -9,6 +9,7 @@ const router = (app) => {
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
   app.get('/add', mid.requiresLogin, controllers.Monster.makerPage);
   app.post('/maker', mid.requiresLogin, controllers.Monster.make);
+  app.get('/plist', controllers.Monster.publicListPage);
   app.get('/list', mid.requiresLogin, controllers.Monster.listPage);
   app.get('/credits', mid.requiresLogin, controllers.creditsPage);
   app.delete('/delete', mid.requiresLogin, controllers.Monster.deleteMonster);
