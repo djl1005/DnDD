@@ -71,5 +71,28 @@ $(document).ready(function() {
     
       return false;
   });
+  
+//    $(".searchMonsterSubmit").on("click", (e) => {
+//            console.log("searchMonsterSubmit");
+//            //e.preventDefault();
+//
+//            $.ajax({
+//            cache: false,
+//            type: "GET",
+//            url: "/searchList",
+//            data: $("#searchForm").serialize(),
+//            dataType: "json",
+//            success: (result, status, xhr) => {
+//                alert("sucess"); 
+//                window.location = result.redirect;
+//            },
+//            error: (xhr, status, error) => {
+//                const messageObj = JSON.parse(xhr.responseText);
+//                handleError(messageObj.error);
+//            }
+//        });
+//    
+//      return true;
+//  });
     
 });

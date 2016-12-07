@@ -1,4 +1,4 @@
-heroku: https://mvcproject430.herokuapp.com
+heroku: https://dnddmilestone3.herokuapp.com/
 
 git: https://github.com/djl1005/DnDD/
 

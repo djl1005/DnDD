@@ -6,6 +6,23 @@ const makerPage = (req, res) => {
     return res.render('add', { csrfToken: req.csrfToken() });
 };
 
+const searchPage = (req, res) => {
+    return res.render('search', { csrfToken: req.csrfToken() });
+};
+
+const search = (req, res) => {
+  Monster.MonsterModel.search(req.session.account._id, req.query, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occured' });
+    }
+    
+
+    return res.render('search', { csrfToken: req.csrfToken(), monsters: docs });
+    //return res.json({ redirect: '/list' });
+  });
+}
+
 const listPage = (req, res) => {
 
   Monster.MonsterModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -41,7 +58,7 @@ const deleteMonster = (req, res) => {
 };
 
 const makeMonster = (req, res) => {
-  if (!req.body.name || !req.body.envorment
+  if (!req.body.name || !req.body.envorment.split(',')
      || !req.body.cr || !req.body.numDie
      || !req.body.die || !req.body.plus
      || !req.body.str || !req.body.int
@@ -52,7 +69,7 @@ const makeMonster = (req, res) => {
 
   const monsterData = {
     name: req.body.name,
-    envorment: req.body.envorment,
+    envorment: req.body.envorment.split(','),
     cr: req.body.cr,
     numDie: req.body.numDie,
     die: req.body.die,
@@ -85,6 +102,8 @@ const makeMonster = (req, res) => {
 
 module.exports.deleteMonster = deleteMonster;
 module.exports.makerPage = makerPage;
+module.exports.searchPage = searchPage;
+module.exports.search = search;
 module.exports.listPage = listPage;
 module.exports.publicListPage = publicListPage;
 module.exports.make = makeMonster;

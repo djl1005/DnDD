@@ -9,20 +9,43 @@
 <body>
   <nav><a href="/login"><img id="logo" src="/assets/img/Logo.jpg" alt="logo"/></a>
     <div class="navlink"><a href="/plist">Public List</a></div>
-    <div class="navlink"><a href="/list">Custom List</a></div>
+    <div class="navlink"><a href="/list">List</a></div>
     <div class="navlink"><a href="/add">Add</a></div>
     <div class="navlink"><a href="/search">Search</a></div>
     <div class="navlink"><a href="/logout">Log out</a></div>
     <div class="navlink"><a href="/credits">credits</a></div>
   </nav>
-  <section id="monsters">
+  <section id="searchMonster">
+  <form id="searchForm" name="searchForm" action="/searchList" method="GET" class="monsterForm">
+    
+    <label for="envorment">Envorments: </label>
+    <input  id="envorment" type="text" name="envorment" value="Exsample1">
+      
+    <label for="mincr">Min Cr: </label>
+    <input id="mincr" type="number" name="mincr" value="0">
+    
+    <label for="maxcr">Max Cr: </label>
+    <input id="maxcr" type="number" name="maxcr" value="0">
+      
+    
+
+    
+    <input type="submit" value="Submit" />
+    
+    <a id="searchMonsterSubmit" href="#" class="searchMonsterSubmit">Search</a>
+    </form>
+      
+      
+  </section>
+  
+    <section id="monsters">
         {{#if monsters}}
             {{#each monsters}}
                 <div class="monster">
                     <h3 class="monsterName">{{this.name}}</h3>
                     <h3 class="monsterHealth">Total HP: {{calcHP this.numDie this.die this.plus}}</h3>
                   
-                    <h3 class="envs">Envorment: {{this.envorment}}  </h3>
+                  <h3 class="envs">Envorment: {{this.envorment}}  </h3>
                   
                     <h4 class"cr">CR: {{this.cr}}</h4>
                   
@@ -62,12 +85,6 @@
                     <p class="skills">Skills: {{this.skills}}</p>
                     
                     <p class="notes">Notes: {{this.notes}}</p>
-                    
-                   
-                    
-                  {{#if ../canDelete}}
-                    <input type="button" class ="delete" name="delete" value="Delete">
-                  {{/if}}
                 </div>
         {{/each}}
       
