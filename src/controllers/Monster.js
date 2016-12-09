@@ -2,13 +2,13 @@ const models = require('../models');
 
 const Monster = models.Monster;
 
-const makerPage = (req, res) => {
-    return res.render('add', { csrfToken: req.csrfToken() });
-};
+const makerPage = (req, res) =>
+     res.render('add', { csrfToken: req.csrfToken() })
+;
 
-const searchPage = (req, res) => {
-    return res.render('search', { csrfToken: req.csrfToken() });
-};
+const searchPage = (req, res) =>
+     res.render('search', { csrfToken: req.csrfToken() })
+;
 
 const search = (req, res) => {
   Monster.MonsterModel.search(req.session.account._id, req.query, (err, docs) => {
@@ -16,15 +16,14 @@ const search = (req, res) => {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
     }
-    
+
 
     return res.render('search', { csrfToken: req.csrfToken(), monsters: docs });
-    //return res.json({ redirect: '/list' });
+    // return res.json({ redirect: '/list' });
   });
-}
+};
 
 const listPage = (req, res) => {
-
   Monster.MonsterModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
@@ -36,7 +35,7 @@ const listPage = (req, res) => {
 };
 
 const publicListPage = (req, res) => {
-  Monster.MonsterModel.findByOwner("583fcd16b5ab8816e826d8d0", (err, docs) => {
+  Monster.MonsterModel.findByOwner('583fcd16b5ab8816e826d8d0', (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
@@ -47,7 +46,7 @@ const publicListPage = (req, res) => {
 };
 
 const deleteMonster = (req, res) => {
-  Monster.MonsterModel.remove(req.session.account._id, req.body.name, (err, docs) => {
+  Monster.MonsterModel.remove(req.session.account._id, req.body.name, (err) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
@@ -97,7 +96,6 @@ const makeMonster = (req, res) => {
     return res.json({ redirect: '/add' });
   });
 };
-
 
 
 module.exports.deleteMonster = deleteMonster;

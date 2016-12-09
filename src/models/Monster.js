@@ -121,26 +121,25 @@ MonsterSchema.statics.findByOwner = (ownerId, callback) => {
 };
 
 MonsterSchema.statics.search = (ownerId, query, callback) => {
-  
-  let max = parseInt(query.maxcr) || 99999999999999;
-  if(max == 0 ) {max = 99999999999999; }
-  let min = parseInt(query.mincr) || 0;
-  
-  const search = {
-    owner: { $in:[convertId(ownerId) , convertId("583fcd16b5ab8816e826d8d0")]},
-    envorment: query.envorment,
-    cr: {$gte: min, $lte: max}
-  };
-  
-  //db.inventory.find ( { quantity: { $in: [20, 50] } } )
+  let max = parseInt(query.maxcr, 10) || 99999999999999;
+  if (max === 0) { max = 99999999999999; }
+  const min = parseInt(query.mincr, 10) || 0;
 
-  return MonsterModel.find(search).select().sort({cr: -1}).exec(callback);
+  const search = {
+    owner: { $in: [convertId(ownerId), convertId('583fcd16b5ab8816e826d8d0')] },
+    envorment: query.envorment,
+    cr: { $gte: min, $lte: max },
+  };
+
+  // db.inventory.find ( { quantity: { $in: [20, 50] } } )
+
+  return MonsterModel.find(search).select().sort({ cr: -1 }).exec(callback);
 };
 
 MonsterSchema.statics.remove = (ownerId, name, callback) => {
   const search = {
     owner: convertId(ownerId),
-    name: name,
+    name,
   };
 
   return MonsterModel.find(search).remove().exec(callback);

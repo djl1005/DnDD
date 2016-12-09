@@ -4,18 +4,18 @@ const calcHP = (num, die, plus) => {
   let hp = 0;
 
 
-  let numDie = parseInt(num);
+  let numDie = parseInt(num, 10);
 
   while (numDie) {
-    hp += Math.floor(Math.random() * (parseInt(die))) + 1;
+    hp += Math.floor(Math.random() * (parseInt(die, 10))) + 1;
     numDie--;
   }
 
-  return hp + parseInt(plus);
+  return hp + parseInt(plus, 10);
 };
 
 const calcMod = attr =>
-   Math.floor(parseInt(attr) / 2) - 5
+   Math.floor(parseInt(attr, 10) / 2) - 5
 ;
 
 

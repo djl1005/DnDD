@@ -10,7 +10,7 @@ const router = (app) => {
   app.get('/add', mid.requiresLogin, controllers.Monster.makerPage);
   app.get('/searchList', mid.requiresLogin, controllers.Monster.search);
   app.get('/search', mid.requiresLogin, controllers.Monster.searchPage);
-  
+
   app.post('/maker', mid.requiresLogin, controllers.Monster.make);
   app.get('/plist', controllers.Monster.publicListPage);
   app.get('/list', mid.requiresLogin, controllers.Monster.listPage);
